@@ -40,8 +40,8 @@ func (c *Credential) Write(b []byte) (n int, err error) {
 		return 0, err
 	}
 	c.Data.CA = buf.Bytes()
-	fmt.Println(buf.Bytes())
-	fmt.Println("hello")
+	// fmt.Println(buf.Bytes())
+	// fmt.Println("hello")
 	return len, err
 	// return len(b), nil
 }
@@ -73,13 +73,13 @@ func main() {
 				Bytes: cert,
 			}
 
-			// if b := pem.EncodeToMemory(block); b != nil {
-			// 	data.Data.CA = b
-			// }
-
-			if err := pem.Encode(&data, block); err != nil {
-				fmt.Println(err)
+			if b := pem.EncodeToMemory(block); b != nil {
+				data.Data.CA = b
 			}
+
+			// if err := pem.Encode(&data, block); err != nil {
+			// 	fmt.Println(err)
+			// }
 			break
 		}
 	}
